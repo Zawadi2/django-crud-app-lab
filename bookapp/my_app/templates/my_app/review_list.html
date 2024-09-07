@@ -1,0 +1,30 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/reviews/review.css' %}" />
+{% endblock %} 
+{% block content %}
+
+<section class="page-header">
+  <h1>All Book Reviews</h1>
+  <img src="{% static 'images/greenbook.jpeg' %}" alt="A green book" />
+  <img src="{% static 'images/flowerbook.jpeg' %}" alt="A book with a flower" />
+  <img src="{% static 'images/bluebook.png' %}" alt="A blue book" />
+  <img src="{% static 'images/orange.png' %}" alt="A orange book" />
+</section>
+
+<section class="card-container">
+  {% for review in review_list %}
+    <div class="card" style="border-color: {{ review.color }}">
+      <div class="card-bg" style="background-color: {{ review.color}}"></div>
+      <a href="{% url 'review-detail' review.id %}">
+        <div class="card-content">
+          <h2>{{ review.book.tittle }}</h2>
+          <p>A {{ review.book.title }} review</p>
+        </div>
+      </a>
+    </div>
+  {% endfor %}
+</section>
+
+{% endblock %}

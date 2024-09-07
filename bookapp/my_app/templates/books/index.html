@@ -1,0 +1,37 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/books/book-index.css' %}"/>
+{% endblock %} 
+{% block content %}
+
+<section class="page-header">
+  <h1>Book List</h1>
+  <img src="{% static 'images/yellowbook.jpeg' %}" alt="A yellow book" />
+  <img src="{% static 'images/greenbook.jpeg' %}" alt="A green book" />
+  <img src="{% static 'images/bluebook.png' %}" alt="A blue book" />
+  <img src="{% static 'images/images.png' %}" alt="An open book" />
+</section>
+
+<section class="card-container">
+  {% for book in books %}
+    <div class="card">
+        <a href="{% url 'book-detail' book.id %}">
+      <div class="card-content">
+        <div class="card-img-container">
+          <img
+            src="{% static 'images/redbook.jpeg' %}"
+            alt="A red book"
+          />
+        </div>
+        <h2 class="card-title">{{ book.title }}</h2>
+        {% if book.author %}
+        <p>By {{ book.title }}</p>
+        {% endif %}
+        <p><small>{{ book.review }}</small></p>
+        <p>Rating: {{ book.rating }}/5</p> 
+      </div>
+    </div>
+  {% endfor %}
+</section>
+{% endblock %}

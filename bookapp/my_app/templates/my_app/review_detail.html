@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/reviews/review.css' %}" />
+{% endblock %}
+{% block content %}
+
+<div class="card">
+    <div class="card-header">
+      <h2>{{ review.book.title }}</h2>
+    </div>
+    <div class="card-body">
+      <p>Rating: {{ review.rating }} / 5</p>
+      <p>Review: {{ review.review }}</p>
+      <p>Date: {{ review.date }}</p>
+    </div>
+  </div>
+  <a href="{% url 'review-update' review.id %}" class="btn warn">Edit</a>
+  <a href="{% url 'review-delete' review.id %}" class="btn danger">Delete</a>
+  
+  {% endblock %}
+  
+
+
+
+
