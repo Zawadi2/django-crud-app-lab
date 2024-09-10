@@ -34,13 +34,13 @@ def book_detail(request, book_id):
         })
 
 @login_required
-def add_recommendation(request, book_id):
+def add_recommendation(request, pk):
     form = RecommendationForm(request.POST)
     if form.is_valid():
         new_recommondation = form.save(commit=False)
-        new_recommondation.book_id = book_id
+        new_recommondation.book_id = pk
         new_recommondation.save()
-    return redirect('book-detail', book_id=book_id)
+    return redirect('book-detail', book_id=pk)
 
 @login_required
 def associate_review(request, book_id, review_id):
